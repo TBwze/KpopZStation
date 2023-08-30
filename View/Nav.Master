@@ -1,0 +1,36 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Nav.master.cs" Inherits="ProjectLabPSDT.View.Nav" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <%string userRole = getRole(); %>
+            <asp:Button ID="home" runat="server" Text="Home" OnClick="Home_Click"/>
+            <%if (userRole.Equals("Guest")) { %>
+                <asp:Button ID="register" runat="server" Text="Register" OnClick="Register_Click" />
+                <asp:Button ID="login" runat="server" Text="Login" OnClick="Login_Click"/>
+            <%} %>
+            <%if (userRole.Equals("Admin") || userRole.Equals("User")) { %>
+                <%if (userRole.Equals("User")){ %>
+                    <asp:Button ID="cart" runat="server" Text="Cart" OnClick="cart_Click"/>
+                <%} %>
+                <asp:Button ID="transaction" runat="server" Text="Transaction" OnClick="transaction_Click"/>
+                <asp:Button ID="updateProfile" runat="server" Text="Update Profile" OnClick="updateProfile_Click"/>
+                <asp:Button ID="logout" runat="server" Text="Logout" OnClick="Logout_Click"/>
+            
+            <%} %>
+            
+            <br />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
